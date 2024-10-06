@@ -10,23 +10,6 @@ concurrency:
   group: ${{ github.ref }}
   cancel-in-progress: true
 jobs:
-  macos_x86:
-    runs-on: macos-latest
-    name: Build on macOS (x86_64)
-    steps:
-      - uses: actions/checkout@v3
-      - name: Set up Go
-        uses: actions/setup-go@v4
-      - name: Install libolm
-        run: brew install libolm
-      - name: Build CLI
-        run: go build && mv beepycli beepy-macos-x86
-      - name: Upload macOS Build Artifacts
-        uses: actions/upload-artifact@v3
-        with:
-          name: macOS-x86_64
-          path: beepy-macos-x86
-          if-no-files-found: error
   macos_arm:
     runs-on: macos-latest
     name: Build on macOS (ARM)
